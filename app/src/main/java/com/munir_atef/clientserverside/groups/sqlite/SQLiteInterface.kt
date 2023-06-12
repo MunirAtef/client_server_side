@@ -44,7 +44,7 @@ class SQLiteInterface(private val db: LocalDatabase) {
             ?: return ServiceResult(null, ResultTypes.ERROR_MESSAGE, false)
 
         val result: Long =  db.insertData(tableName = tableName, data = data)
-        return ServiceResult(result.toString(), ResultTypes.TEXT, true)
+        return ServiceResult(result.toString().toByteArray(), ResultTypes.TEXT, true)
     }
 
     /**
@@ -60,7 +60,7 @@ class SQLiteInterface(private val db: LocalDatabase) {
 
         val args = JSONObject(body)
 
-        if (!args.has("table")) return ServiceResult("error", ResultTypes.ERROR_MESSAGE, false)
+        if (!args.has("table")) return ServiceResult("error".toByteArray(), ResultTypes.ERROR_MESSAGE, false)
 
         val tableName: String = args.optString("table")
         val where: String = args.optString("where")
@@ -74,7 +74,7 @@ class SQLiteInterface(private val db: LocalDatabase) {
             conditionArgs = whereArgs
         )
 
-        return ServiceResult(result.toString(), ResultTypes.JSON, true)
+        return ServiceResult(result.toString().toByteArray(), ResultTypes.JSON, true)
     }
 
     /**
@@ -106,7 +106,7 @@ class SQLiteInterface(private val db: LocalDatabase) {
             conditionArgs = whereArgs
         )
 
-        return ServiceResult(result.toString(), ResultTypes.TEXT, true)
+        return ServiceResult(result.toString().toByteArray(), ResultTypes.TEXT, true)
     }
 
     /**
@@ -129,7 +129,7 @@ class SQLiteInterface(private val db: LocalDatabase) {
             conditionArgs = whereArgs
         )
 
-        return ServiceResult(result.toString(), ResultTypes.TEXT, true)
+        return ServiceResult(result.toString().toByteArray(), ResultTypes.TEXT, true)
     }
 
     /**
@@ -141,7 +141,7 @@ class SQLiteInterface(private val db: LocalDatabase) {
     private fun rawQuery(body: String): ServiceResult {
         val args = JSONObject(body)
 
-        if (!args.has("sql")) return ServiceResult("error", ResultTypes.ERROR_MESSAGE, false)
+        if (!args.has("sql")) return ServiceResult("error".toByteArray(), ResultTypes.ERROR_MESSAGE, false)
 
         val sql: String = args.optString("sql")
         val sqlArgs: Array<String>? = jsonArrayToArrayString(args.optJSONArray("args"))
@@ -151,7 +151,7 @@ class SQLiteInterface(private val db: LocalDatabase) {
             args = sqlArgs
         )
 
-        return ServiceResult(result.toString(), ResultTypes.JSON, true)
+        return ServiceResult(result.toString().toByteArray(), ResultTypes.JSON, true)
     }
 
     /**
@@ -163,7 +163,7 @@ class SQLiteInterface(private val db: LocalDatabase) {
     private fun executeSQL(body: String): ServiceResult {
         val args = JSONObject(body)
 
-        if (!args.has("sql")) return ServiceResult("error", ResultTypes.ERROR_MESSAGE, false)
+        if (!args.has("sql")) return ServiceResult("error".toByteArray(), ResultTypes.ERROR_MESSAGE, false)
 
         val sql: String = args.optString("sql")
         val sqlArgs: Array<String>? = jsonArrayToArrayString(args.optJSONArray("args"))

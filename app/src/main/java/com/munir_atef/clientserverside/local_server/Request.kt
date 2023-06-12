@@ -1,6 +1,5 @@
 package com.munir_atef.clientserverside.local_server
 
-import com.munir_atef.clientserverside.printf
 import java.io.BufferedReader
 
 
@@ -12,8 +11,6 @@ class Request(inputStream: BufferedReader) {
     var isFile: Boolean = false
 
     init {
-        printf("init of Request")
-
         val headerLines: ArrayList<String> = arrayListOf()
         var line: String = inputStream.readLine()
 

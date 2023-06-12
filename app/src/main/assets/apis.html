@@ -99,7 +99,7 @@
     <label for="groups-list"></label><select id="groups-list" onchange="onGroupChanged()">
         <option value="sqlite">SQLite</option>
         <option value="preferences">Shared Preferences</option>
-        <option value="filesystem" disabled>Filesystem</option>
+        <option value="filesystem">Filesystem</option>
     </select>
 
     <label for="services-list"></label><select id="services-list" onchange="onServiceChanged()"></select>
@@ -182,74 +182,84 @@
 
             preferences: [
                 {
-                    name: "getString",
-                    body: "",
-                    useBody: true
-                },
-                {
-                    name: "getInt",
-                    body: "",
-                    useBody: true
-                },
-                {
-                    name: "getDouble",
+                    name: "get-item",
                     body: "",
                     useBody: true
                 },
 
                 {
-                    name: "setString",
+                    name: "set-item",
                     body: `{\n\t"key": "",\n\t"value": ""\n}`,
                     useBody: true
                 },
                 {
-                    name: "setInt",
-                    body: `{\n\t"key": "",\n\t"value": \n}`,
-                    useBody: true
-                },
-                {
-                    name: "setDouble",
-                    body: `{\n\t"key": "",\n\t"value": \n}`,
-                    useBody: true
-                },
-
-                {
-                    name: "removeString",
+                    name: "remove-item",
                     body: "",
                     useBody: true
                 },
                 {
-                    name: "removeInt",
-                    body: "",
-                    useBody: true
-                },
-                {
-                    name: "removeDouble",
-                    body: "",
-                    useBody: true
-                },
-
-                {
-                    name: "getAllStrings",
+                    name: "get-all-items",
                     body: "",
                     useBody: false
                 },
                 {
-                    name: "getAllIntegers",
-                    body: "",
-                    useBody: false
-                },
-                {
-                    name: "getAllDoubles",
-                    body: "",
-                    useBody: false
-                },
-
-                {
-                    name: "removeAll",
+                    name: "remove-all-items",
                     body: "",
                     useBody: false
                 }
+            ],
+
+            filesystem: [
+                {
+                    name: "info",
+                    body: "/storage/emulated/0//",
+                    useBody: true
+                },
+                {
+                    name: "delete",
+                    body: `{\n\t"path": "/storage/emulated/0//",\n\t"recursively": \n}`,
+                    useBody: true
+                },
+                {
+                    name: "create-file",
+                    body: `{\n\t"path": "/storage/emulated/0//",\n\t"recursively": \n}`,
+                    useBody: true
+                },
+                {
+                    name: "create-dir",
+                    body: `{\n\t"path": "/storage/emulated/0//",\n\t"recursively": \n}`,
+                    useBody: true
+                },
+                {
+                    name: "list-content",
+                    body: "/storage/emulated/0//",
+                    useBody: true
+                },
+                {
+                    name: "copy-file",
+                    body: `{\n\t"src": "/storage/emulated/0//",\n\t"dest": "/storage/emulated/0//",\n\t"overwrite",\n\t"recursively": \n}`,
+                    useBody: true
+                },
+                {
+                    name: "read-string",
+                    body: "/storage/emulated/0//",
+                    useBody: true
+                },
+                {
+                    name: "read-bytes",
+                    body: "/storage/emulated/0//",
+                    useBody: true
+                },
+                {
+                    name: "write-string",
+                    body: `{\n\t"path": "/storage/emulated/0//",\n\t"content": ""\n}`,
+                    useBody: true
+                },
+                {
+                    name: "write-bytes",
+                    body: `{\n\t"path": "/storage/emulated/0//",\n\t"content": []\n}`,
+                    useBody: true
+                },
             ]
         }
 

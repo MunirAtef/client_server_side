@@ -73,22 +73,20 @@ class LocalServer(port: Int, context: Context, private val rootDirectory: String
                     service.invokeGroup(pathToService[2], pathToService[3], body ?: "")
 
                 printf(serviceResult.passed)
-                printf(serviceResult.data)
+                printf(serviceResult.data.toString())
                 printf(serviceResult.type)
 
 
                 if (serviceResult.passed) {
                     outputStream.write("HTTP/1.1 200 OK\r\n".toByteArray())
+                    val data: ByteArray? = serviceResult.data
 
-                    if (serviceResult.type != ResultTypes.EMPTY) {
-                        val data = serviceResult.data.toString().toByteArray()
-
+                    if (serviceResult.type != ResultTypes.EMPTY && data != null) {
                         val response = "Content-Type: ${serviceResult.type}" +
                                 "\r\nContent-Length: ${data.size}\r\n\r\n"
 
                         outputStream.write(response.toByteArray() + data)
                     }
-
                     failed = false
                 }
             }
